@@ -1,4 +1,8 @@
-import { PRODUCT_CATEGORIES } from "@/config";
+import {
+  ECategory,
+  PRODUCT_CATEGORIES,
+  findImageUrlByCategory,
+} from "@/config";
 import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/utils";
 import { Product } from "@/payload-types";
@@ -13,17 +17,27 @@ const CartItem = ({ product }: { product: Product }) => {
   const label = PRODUCT_CATEGORIES.find(
     ({ value }) => value === product.category
   )?.label;
-
+  const url = findImageUrlByCategory(product.category as ECategory);
   return (
     <div className="space-y-3 py-2">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center space-x-4">
           <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
             <div className="flex h-full items-center justify-center bg-secondary">
-              <ImageIcon
-                aria-hidden="true"
-                className="h-4 w-4 text-muted-foreground"
-              />
+              {url ? (
+                <Image
+                  src={url}
+                  width={300}
+                  height={300}
+                  className="w-1/2"
+                  alt="product logo"
+                ></Image>
+              ) : (
+                <ImageIcon
+                  aria-hidden="true"
+                  className="h-4 w-4 text-muted-foreground"
+                />
+              )}
             </div>
           </div>
 

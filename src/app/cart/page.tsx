@@ -1,11 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { PRODUCT_CATEGORIES } from "@/config";
+import {
+  ECategory,
+  PRODUCT_CATEGORIES,
+  findImageUrlByCategory,
+} from "@/config";
 import { useCart } from "@/hooks/use-cart";
 import { cn, formatPrice } from "@/lib/utils";
 import { trpc } from "@/trpc/client";
-import { Check, Loader2, X } from "lucide-react";
+import { Check, ImageIcon, Loader2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -86,20 +90,28 @@ const Page = () => {
                   )?.label;
 
                   // const { image } = product.images[0]
+                  const url = findImageUrlByCategory(
+                    product.category as ECategory
+                  );
 
                   return (
                     <li key={product.id} className="flex py-6 sm:py-10">
                       <div className="flex-shrink-0">
                         <div className="relative h-24 w-24">
-                          {/* {typeof image !== 'string' &&
-                          image.url ? (
+                          {url ? (
                             <Image
-                              fill
-                              src={image.url}
-                              alt='product image'
-                              className='h-full w-full rounded-md object-cover object-center sm:h-48 sm:w-48'
+                              src={url}
+                              width={300}
+                              height={300}
+                              className="w-full"
+                              alt="product logo"
+                            ></Image>
+                          ) : (
+                            <ImageIcon
+                              aria-hidden="true"
+                              className="h-4 w-4 text-muted-foreground"
                             />
-                          ) : null} */}
+                          )}
                         </div>
                       </div>
 

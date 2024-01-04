@@ -789,9 +789,6 @@ video {
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
-.aspect-video {
-  aspect-ratio: 16 / 9;
-}
 .h-1\/3 {
   height: 33.333333%;
 }
@@ -929,6 +926,9 @@ video {
 }
 .w-px {
   width: 1px;
+}
+.w-1\/2 {
+  width: 50%;
 }
 .min-w-\[8rem\] {
   min-width: 8rem;
@@ -2146,11 +2146,6 @@ video {
   .sm\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
-  }
-
-  .sm\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 }
 

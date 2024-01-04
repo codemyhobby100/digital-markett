@@ -10,18 +10,17 @@ export interface Config {
   collections: {
     users: User;
     products: Product;
-    product_files: ProductFile;
+    media: Media;
     orders: Order;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {};
 }
 export interface User {
   id: string;
   products?: (string | Product)[] | null;
-  product_files?: (string | ProductFile)[] | null;
-  role: "admin" | "user";
+  role: 'admin' | 'user';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -41,14 +40,23 @@ export interface Product {
   name: string;
   description?: string | null;
   price: number;
-  category: "ui_kits" | "icons";
-  approvedForSale?: ("pending" | "approved" | "denied") | null;
+  category:
+    | 'facebook'
+    | 'twitter'
+    | 'instagram'
+    | 'linkedin'
+    | 'pinterest'
+    | 'snapchat'
+    | 'tiktok'
+    | 'youtube'
+    | 'github';
+  approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;
   stripeId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
-export interface ProductFile {
+export interface Media {
   id: string;
   user?: (string | null) | User;
   updatedAt: string;
@@ -59,8 +67,33 @@ export interface ProductFile {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
-
 export interface Order {
   id: string;
   _isPaid: boolean;
@@ -72,7 +105,7 @@ export interface Order {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   key?: string | null;
@@ -96,6 +129,7 @@ export interface PayloadMigration {
   createdAt: string;
 }
 
-declare module "payload" {
+
+declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }

@@ -5,8 +5,13 @@ import { useEffect, useState } from "react";
 import { Skeleton } from "./ui/skeleton";
 import Link from "next/link";
 import { cn, formatPrice } from "@/lib/utils";
-import { PRODUCT_CATEGORIES } from "@/config";
+import {
+  ECategory,
+  PRODUCT_CATEGORIES,
+  findImageUrlByCategory,
+} from "@/config";
 import ImageSlider from "./ImageSlider";
+import Image from "next/image";
 
 interface ProductListingProps {
   product: Product | null;
@@ -30,12 +35,8 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
     ({ value }) => value === product.category
   )?.label;
 
-  // const validUrls = product.images
-  //   .map(({ image }) =>
-  //     typeof image === 'string' ? image : image.url
-  //   )
-  //   .filter(Boolean) as string[]
-
+  const validUrls = findImageUrlByCategory(product.category as ECategory);
+  console.log({ validUrls, id: product.category });
   if (isVisible && product) {
     return (
       <Link
@@ -46,7 +47,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
       >
         <div className="flex flex-col w-full">
           {/* <ImageSlider urls={validUrls} /> */}
-
+          <Image width={100} height={100} src={validUrls} alt="logo" />
           <h3 className="mt-4 font-medium text-sm text-gray-700">
             {product.name}
           </h3>

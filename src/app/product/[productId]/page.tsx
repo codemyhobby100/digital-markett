@@ -2,10 +2,15 @@ import AddToCartButton from "@/components/AddToCartButton";
 import ImageSlider from "@/components/ImageSlider";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import ProductReel from "@/components/ProductReel";
-import { PRODUCT_CATEGORIES } from "@/config";
+import {
+  ECategory,
+  PRODUCT_CATEGORIES,
+  findImageUrlByCategory,
+} from "@/config";
 import { getPayloadClient } from "@/get-payload";
 import { formatPrice } from "@/lib/utils";
 import { Check, Shield } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -120,8 +125,15 @@ const Page = async ({ params }: PageProps) => {
 
           {/* Product images */}
           <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-            <div className="aspect-square rounded-lg">
+            <div className="aspect-square rounded-lg flex justify-center items-center">
               {/* <ImageSlider urls={validUrls} /> */}
+              <Image
+                src={findImageUrlByCategory(product.category as ECategory)}
+                width={300}
+                height={300}
+                className="w-1/2"
+                alt="product logo"
+              ></Image>
             </div>
           </div>
 

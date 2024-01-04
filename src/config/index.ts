@@ -1,44 +1,71 @@
-export const PRODUCT_CATEGORIES = [
+export enum ECategory {
+  Facebook = "facebook",
+  Twitter = "twitter",
+  Instagram = "instagram",
+  LinkedIn = "linkedin",
+  Pinterest = "pinterest",
+  Snapchat = "snapchat",
+  TikTok = "tiktok",
+  YouTube = "youtube",
+  GitHub = "github",
+}
+
+interface IProduct_Category {
+  label: string;
+  value: ECategory;
+  imageUrl: string;
+}
+
+export const PRODUCT_CATEGORIES: IProduct_Category[] = [
   {
-    label: 'UI Kits',
-    value: 'ui_kits' as const,
-    featured: [
-      {
-        name: 'Editor picks',
-        href: `/products?category=ui_kits`,
-        imageSrc: '/nav/ui-kits/mixed.jpg',
-      },
-      {
-        name: 'New Arrivals',
-        href: '/products?category=ui_kits&sort=desc',
-        imageSrc: '/nav/ui-kits/blue.jpg',
-      },
-      {
-        name: 'Bestsellers',
-        href: '/products?category=ui_kits',
-        imageSrc: '/nav/ui-kits/purple.jpg',
-      },
-    ],
+    label: "Facebook",
+    value: ECategory.Facebook,
+    imageUrl: "/assets/facebook.png",
   },
   {
-    label: 'Icons',
-    value: 'icons' as const,
-    featured: [
-      {
-        name: 'Favorite Icon Picks',
-        href: `/products?category=icons`,
-        imageSrc: '/nav/icons/picks.jpg',
-      },
-      {
-        name: 'New Arrivals',
-        href: '/products?category=icons&sort=desc',
-        imageSrc: '/nav/icons/new.jpg',
-      },
-      {
-        name: 'Bestselling Icons',
-        href: '/products?category=icons',
-        imageSrc: '/nav/icons/bestsellers.jpg',
-      },
-    ],
+    label: "Twitter",
+    value: ECategory.Twitter,
+    imageUrl: "/assets//twitter.png",
   },
-]
+  {
+    label: "Instagram",
+    value: ECategory.Instagram,
+    imageUrl: "/assets/instagram.png",
+  },
+  {
+    label: "LinkedIn",
+    value: ECategory.LinkedIn,
+    imageUrl: "/assets/linkedin.png",
+  },
+  {
+    label: "Pinterest",
+    value: ECategory.Pinterest,
+    imageUrl: "/assets/pinterest.png",
+  },
+  {
+    label: "Snapchat",
+    value: ECategory.Snapchat,
+    imageUrl: "/assets/snapchat.png",
+  },
+  {
+    label: "TikTok",
+    value: ECategory.TikTok,
+    imageUrl: "/assets/tiktok.png",
+  },
+  {
+    label: "YouTube",
+    value: ECategory.YouTube,
+    imageUrl: "/assets/youtube.png",
+  },
+  {
+    label: "GitHub",
+    value: ECategory.GitHub,
+    imageUrl: "/assets/github.png",
+  },
+];
+export function findImageUrlByCategory(categoryName: ECategory): string {
+  return (
+    PRODUCT_CATEGORIES.find((single) => single.value === categoryName)
+      ?.imageUrl || ""
+  );
+}
