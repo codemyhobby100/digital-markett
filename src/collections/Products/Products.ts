@@ -3,9 +3,10 @@ import {
   BeforeChangeHook,
 } from "payload/dist/collections/config/types";
 import { PRODUCT_CATEGORIES } from "../../config";
-import { Access, CollectionConfig } from "payload/types";
-import { Product, User } from "../../payload-types";
+import { Access, CollectionConfig, Option } from "payload/types";
+import { AccountInfo, Product, User } from "../../payload-types";
 import { stripe } from "../../lib/stripe";
+import payload from "payload";
 
 const addUser: BeforeChangeHook<Product> = async ({ req, data }) => {
   const user = req.user;
@@ -13,6 +14,17 @@ const addUser: BeforeChangeHook<Product> = async ({ req, data }) => {
   return { ...data, user: user.id };
 };
 
+const getIds = async () => {
+  const data = await payload.find({
+    collection: "accountInfo",
+  });
+  const info = data.docs as AccountInfo[];
+  const re: Option[] = info.map((single) => ({
+    label: single.user_name,
+    value: single.id,
+  }));
+  return re;
+};
 const syncUser: AfterChangeHook<Product> = async ({ req, doc }) => {
   const fullUser = await req.payload.findByID({
     collection: "users",
@@ -132,7 +144,13 @@ export const Products: CollectionConfig = {
     },
     {
       name: "name",
-      label: "Names",
+      label: "Name",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "name2",
+      label: "Name dfasdf ",
       type: "text",
       required: true,
     },

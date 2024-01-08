@@ -10,6 +10,7 @@ export interface Config {
   collections: {
     users: User;
     products: Product;
+    accountInfo: AccountInfo;
     media: Media;
     orders: Order;
     'payload-preferences': PayloadPreference;
@@ -38,6 +39,7 @@ export interface Product {
   id: string;
   user?: (string | null) | User;
   name: string;
+  name2: string;
   description?: string | null;
   price: number;
   category:
@@ -53,6 +55,15 @@ export interface Product {
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;
   stripeId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface AccountInfo {
+  id: string;
+  user_name: string;
+  password: string;
+  product?: (string | null) | Product;
+  user?: (string | null) | User;
   updatedAt: string;
   createdAt: string;
 }

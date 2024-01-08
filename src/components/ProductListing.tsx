@@ -36,7 +36,6 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
   )?.label;
 
   const validUrls = findImageUrlByCategory(product.category as ECategory);
-  console.log({ validUrls, id: product.category });
   if (isVisible && product) {
     return (
       <Link

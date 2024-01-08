@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# digital-markett
-=======
 # DigitalHippo - A Modern Fullstack E-Commerce Marketplace for Digital Products
 
 Built with the Next.js 14 App Router, tRPC, TypeScript, Payload & Tailwind
@@ -41,4 +38,3 @@ and copy the .env.example variables into a separate .env file, fill them out & a
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
->>>>>>> master

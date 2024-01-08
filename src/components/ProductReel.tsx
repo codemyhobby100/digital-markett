@@ -39,6 +39,7 @@ const ProductReel = (props: ProductReelProps) => {
     map = new Array<null>(query.limit ?? FALLBACK_LIMIT).fill(null);
   }
 
+  console.log(products);
   return (
     <section className="py-12">
       <div className="md:flex md:items-center md:justify-between mb-4">

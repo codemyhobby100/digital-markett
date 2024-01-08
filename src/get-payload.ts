@@ -9,12 +9,12 @@ dotenv.config({
 });
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.resend.com",
+  service: "gmail",
   secure: true,
   port: 465,
   auth: {
-    user: "resend",
-    pass: process.env.RESEND_API_KEY,
+    user: "naimurrhman53@gmail.com",
+    pass: "effyzuelazwgppnz",
   },
 });
 

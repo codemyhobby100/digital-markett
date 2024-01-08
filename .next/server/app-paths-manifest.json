@@ -1,5 +1,6 @@
 {
+  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/product/[productId]/page": "app/product/[productId]/page.js",
-  "/cart/page": "app/cart/page.js"
+  "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
+  "/(auth)/verify-email/page": "app/(auth)/verify-email/page.js"
 }
